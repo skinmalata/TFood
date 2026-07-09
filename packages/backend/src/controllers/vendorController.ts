@@ -117,7 +117,7 @@ export const getVendorOrders = async (req: AuthRequest, res: Response, next: Nex
     res.json({
       success: true,
       data: orders,
-      pagination: { page: Number(page), limit: Number(limit), total: count, totalPages: Math.ceil(count / Number(limit)) },
+      pagination: { page: Number(page), limit: Number(limit), total: count, totalPages: Math.ceil(Number(count) / Number(limit)) },
     });
   } catch (err) { next(err); }
 };

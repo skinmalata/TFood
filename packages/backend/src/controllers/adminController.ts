@@ -20,7 +20,7 @@ export const listVendors = async (req: AuthRequest, res: Response, next: NextFun
 
     res.json({
       success: true, data: vendors,
-      pagination: { page: Number(page), limit: Number(limit), total: count, totalPages: Math.ceil(count / Number(limit)) },
+      pagination: { page: Number(page), limit: Number(limit), total: count, totalPages: Math.ceil(Number(count) / Number(limit)) },
     });
   } catch (err) { next(err); }
 };
@@ -96,7 +96,7 @@ export const listDisputes = async (req: AuthRequest, res: Response, next: NextFu
 
     res.json({
       success: true, data: disputes,
-      pagination: { page: Number(page), limit: Number(limit), total: count, totalPages: Math.ceil(count / Number(limit)) },
+      pagination: { page: Number(page), limit: Number(limit), total: count, totalPages: Math.ceil(Number(count) / Number(limit)) },
     });
   } catch (err) { next(err); }
 };
@@ -186,7 +186,7 @@ export const getAdminUsers = async (req: AuthRequest, res: Response, next: NextF
 
     res.json({
       success: true, data: users,
-      pagination: { page: Number(page), limit: Number(limit), total: count, totalPages: Math.ceil(count / Number(limit)) },
+      pagination: { page: Number(page), limit: Number(limit), total: count, totalPages: Math.ceil(Number(count) / Number(limit)) },
     });
   } catch (err) { next(err); }
 };

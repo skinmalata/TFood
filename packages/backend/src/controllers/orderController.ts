@@ -144,13 +144,11 @@ export const handleOrderAction = async (req: AuthRequest, res: Response, next: N
     }
 
     const validTransitions: Record<string, string[]> = {
-      pending: ['accepted', 'declined'],
-      accepted: ['preparing'],
+      pending: ['accepted', 'declined', 'cancelled'],
+      accepted: ['preparing', 'cancelled'],
       preparing: ['ready'],
       ready: ['out_for_delivery'],
       out_for_delivery: ['delivered'],
-      pending: ['cancelled'],
-      accepted: ['cancelled'],
     };
 
     const allowedTransitions = validTransitions[order.status] || [];
@@ -196,7 +194,7 @@ export const getConsumerOrders = async (req: AuthRequest, res: Response, next: N
 
     res.json({
       success: true, data: orders,
-      pagination: { page: Number(page), limit: Number(limit), total: count, totalPages: Math.ceil(count / Number(limit)) },
+      pagination: { page: Number(page), limit: Number(limit), total: count, totalPages: Math.ceil(Number(count) / Number(limit)) },
     });
   } catch (err) { next(err); }
 };

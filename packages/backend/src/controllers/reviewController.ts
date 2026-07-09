@@ -96,7 +96,7 @@ export const getVendorReviews = async (req: AuthRequest, res: Response, next: Ne
 
     res.json({
       success: true, data: reviews,
-      pagination: { page: Number(page), limit: Number(limit), total: count, totalPages: Math.ceil(count / Number(limit)) },
+      pagination: { page: Number(page), limit: Number(limit), total: count, totalPages: Math.ceil(Number(count) / Number(limit)) },
     });
   } catch (err) { next(err); }
 };
