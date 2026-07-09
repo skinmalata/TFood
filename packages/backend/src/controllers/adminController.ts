@@ -141,7 +141,7 @@ export const getAdminDashboard = async (req: AuthRequest, res: Response, next: N
     // Revenue chart (last 7 days)
     const dailyRevenue = await db('payment_transactions')
       .where('status', 'success')
-      .whereRaw('paid_at >= DATE_SUB(NOW(), INTERVAL 7 DAY)')
+      .where('paid_at', '>=', db.raw("NOW() - INTERVAL '7 days'"))
       .select(db.raw('DATE(paid_at) as date'), db.raw('SUM(amount) as revenue'))
       .groupBy('date')
       .orderBy('date');
