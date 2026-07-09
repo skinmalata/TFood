@@ -3,6 +3,7 @@ import cors from 'cors';
 import helmet from 'helmet';
 import morgan from 'morgan';
 import path from 'path';
+import { execSync } from 'child_process';
 import { config } from './config/env';
 import { errorHandler, notFoundHandler } from './middleware/errorHandler';
 
@@ -36,6 +37,22 @@ app.use('/uploads', express.static(path.resolve(__dirname, '../uploads')));
 // Health check
 app.get('/api/health', (req, res) => {
   res.json({ success: true, message: 'TFood API is running', timestamp: new Date().toISOString() });
+});
+
+// Setup endpoint (run migrations + seeds)
+app.get('/api/setup', async (req, res) => {
+  try {
+    const backendRoot = path.resolve(__dirname, '..');
+    const knexfile = path.join(backendRoot, 'dist/config/knexfile.js');
+    const result = execSync(`npx knex migrate:latest --knexfile "${knexfile}" && npx knex seed:run --knexfile "${knexfile}"`, {
+      cwd: backendRoot,
+      encoding: 'utf8',
+      env: { ...process.env, NODE_ENV: 'production' },
+    });
+    res.json({ success: true, message: 'Database setup complete', output: result });
+  } catch (err: any) {
+    res.status(500).json({ success: false, message: 'Setup failed', error: err.message, output: err.stdout || err.stderr });
+  }
 });
 
 // Routes
