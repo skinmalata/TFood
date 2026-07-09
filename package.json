@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "workspaces": [
-    "packages/*"
+    "packages/shared",
+    "packages/backend",
+    "packages/admin-web"
   ],
   "scripts": {
     "dev:backend": "npm run dev -w packages/backend",
