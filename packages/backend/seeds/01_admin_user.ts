@@ -10,7 +10,7 @@ export async function seed(knex: Knex): Promise<void> {
   const passwordHash = await bcrypt.hash('Admin@12345', 12);
 
   // Admin user
-  const [adminId] = await knex('users').insert({
+  const [adminRow] = await knex('users').insert({
     email: 'admin@tfood.ng',
     phone: '+2348000000000',
     password_hash: passwordHash,
@@ -20,10 +20,11 @@ export async function seed(knex: Knex): Promise<void> {
     is_active: true,
     email_verified_at: new Date(),
     phone_verified_at: new Date(),
-  });
+  }).returning('id');
+  const adminId = typeof adminRow === 'object' ? adminRow.id : adminRow;
 
   // Sample vendor
-  const [vendorUserId] = await knex('users').insert({
+  const [vendorUserRow] = await knex('users').insert({
     email: 'vendor@test.com',
     phone: '+2348012345678',
     password_hash: passwordHash,
@@ -33,9 +34,10 @@ export async function seed(knex: Knex): Promise<void> {
     is_active: true,
     email_verified_at: new Date(),
     phone_verified_at: new Date(),
-  });
+  }).returning('id');
+  const vendorUserId = typeof vendorUserRow === 'object' ? vendorUserRow.id : vendorUserRow;
 
-  const [vendorId] = await knex('vendors').insert({
+  const [vendorRow] = await knex('vendors').insert({
     user_id: vendorUserId,
     business_name: 'Chidi\'s Kitchen',
     business_address: '42 Awolowo Road, Ikoyi, Lagos',
@@ -51,10 +53,11 @@ export async function seed(knex: Knex): Promise<void> {
     closing_hours: '22:00',
     rating: 4.5,
     total_orders: 150,
-  });
+  }).returning('id');
+  const vendorId = typeof vendorRow === 'object' ? vendorRow.id : vendorRow;
 
   // Sample consumer
-  const [consumerUserId] = await knex('users').insert({
+  const [consumerUserRow] = await knex('users').insert({
     email: 'consumer@test.com',
     phone: '+2348098765432',
     password_hash: passwordHash,
@@ -64,7 +67,8 @@ export async function seed(knex: Knex): Promise<void> {
     is_active: true,
     email_verified_at: new Date(),
     phone_verified_at: new Date(),
-  });
+  }).returning('id');
+  const consumerUserId = typeof consumerUserRow === 'object' ? consumerUserRow.id : consumerUserRow;
 
   await knex('consumers').insert({
     user_id: consumerUserId,
