@@ -8,7 +8,7 @@ export const config = {
   NODE_ENV: process.env.NODE_ENV || 'development',
 
   DB_HOST: process.env.DB_HOST || 'localhost',
-  DB_PORT: parseInt(process.env.DB_PORT || '3306', 10),
+  DB_PORT: parseInt(process.env.DB_PORT || '5432', 10),
   DB_USER: process.env.DB_USER || 'root',
   DB_PASSWORD: process.env.DB_PASSWORD || '',
   DB_NAME: process.env.DB_NAME || 'tfood',

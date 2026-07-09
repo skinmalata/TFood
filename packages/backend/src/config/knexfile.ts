@@ -6,7 +6,7 @@ const seedsDir = path.resolve(__dirname, '../../seeds');
 
 const knexConfig = {
   development: {
-    client: 'mysql2',
+    client: 'pg',
     connection: {
       host: config.DB_HOST,
       port: config.DB_PORT,
@@ -28,7 +28,7 @@ const knexConfig = {
     },
   },
   production: {
-    client: 'mysql2',
+    client: 'pg',
     connection: {
       host: config.DB_HOST,
       port: config.DB_PORT,

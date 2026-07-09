@@ -2,9 +2,10 @@ import { Knex } from 'knex';
 import bcrypt from 'bcryptjs';
 
 export async function seed(knex: Knex): Promise<void> {
-  await knex('users').del();
-  await knex('vendors').del();
+  await knex('menu_items').del();
   await knex('consumers').del();
+  await knex('vendors').del();
+  await knex('users').del();
 
   const passwordHash = await bcrypt.hash('Admin@12345', 12);
 
