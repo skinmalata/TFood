@@ -1,0 +1,52 @@
+services:
+  - type: web
+    name: tfood-api
+    env: node
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: DB_HOST
+        fromDatabase:
+          name: tfood-db
+          property: host
+      - key: DB_PORT
+        fromDatabase:
+          name: tfood-db
+          property: port
+      - key: DB_USER
+        fromDatabase:
+          name: tfood-db
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: tfood-db
+          property: password
+      - key: DB_NAME
+        fromDatabase:
+          name: tfood-db
+          property: database
+      - key: JWT_SECRET
+        generateValue: true
+      - key: PAYSTACK_SECRET_KEY
+        sync: false
+      - key: PUSHER_APP_ID
+        sync: false
+      - key: PUSHER_KEY
+        sync: false
+      - key: PUSHER_SECRET
+        sync: false
+      - key: TWILIO_ACCOUNT_SID
+        sync: false
+      - key: TWILIO_AUTH_TOKEN
+        sync: false
+      - key: GOOGLE_MAPS_API_KEY
+        sync: false
+
+databases:
+  - name: tfood-db
+    databaseName: tfood
+    plan: free

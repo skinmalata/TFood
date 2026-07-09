@@ -1,0 +1,46 @@
+{
+  "name": "@tfood/backend",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "migrate": "knex migrate:latest --knexfile src/config/knexfile.ts",
+    "migrate:rollback": "knex migrate:rollback --knexfile src/config/knexfile.ts",
+    "seed": "knex seed:run --knexfile src/config/knexfile.ts"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "helmet": "^7.1.0",
+    "morgan": "^1.10.0",
+    "dotenv": "^16.4.0",
+    "knex": "^3.1.0",
+    "mysql2": "^3.9.0",
+    "jsonwebtoken": "^9.0.2",
+    "bcryptjs": "^2.4.3",
+    "pusher": "^5.2.0",
+    "paystack-api": "^2.0.0",
+    "twilio": "^5.0.0",
+    "multer": "^1.4.5-lts.1",
+    "joi": "^17.12.0",
+    "uuid": "^9.0.0",
+    "axios": "^1.6.7",
+    "express-rate-limit": "^7.1.5",
+    "@tfood/shared": "*"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/cors": "^2.8.17",
+    "@types/morgan": "^1.9.9",
+    "@types/jsonwebtoken": "^9.0.5",
+    "@types/bcryptjs": "^2.4.6",
+    "@types/multer": "^1.4.11",
+    "@types/uuid": "^9.0.7",
+    "@types/node": "^20.11.0",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.4.0",
+    "ts-node": "^10.9.2"
+  }
+}
