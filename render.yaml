@@ -2,8 +2,10 @@ services:
   - type: web
     name: tfood-api
     env: node
-    buildCommand: npm install && npm run build
-    startCommand: npm start
+    region: frankfurt
+    plan: free
+    buildCommand: npm install && npm run build:shared && npm run build:backend
+    startCommand: cd packages/backend && node dist/index.js
     envVars:
       - key: NODE_ENV
         value: production
@@ -50,3 +52,4 @@ databases:
   - name: tfood-db
     databaseName: tfood
     plan: free
+    region: frankfurt
