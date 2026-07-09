@@ -1,4 +1,8 @@
+import path from 'path';
 import { config } from './env';
+
+const migrationsDir = path.resolve(__dirname, '../../migrations');
+const seedsDir = path.resolve(__dirname, '../../seeds');
 
 const knexConfig = {
   development: {
@@ -11,11 +15,11 @@ const knexConfig = {
       database: config.DB_NAME,
     },
     migrations: {
-      directory: './migrations',
+      directory: migrationsDir,
       extension: 'ts',
     },
     seeds: {
-      directory: './seeds',
+      directory: seedsDir,
       extension: 'ts',
     },
     pool: {
@@ -33,10 +37,12 @@ const knexConfig = {
       database: config.DB_NAME,
     },
     migrations: {
-      directory: './migrations',
+      directory: migrationsDir,
+      extension: 'ts',
     },
     seeds: {
-      directory: './seeds',
+      directory: seedsDir,
+      extension: 'ts',
     },
     pool: {
       min: 2,
