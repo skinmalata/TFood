@@ -188,7 +188,7 @@ export interface PaymentTransaction {
 }
 
 export interface DeliveryEstimate {
-  vendorId: number;
+  vendorId?: number;
   distanceKm: number;
   estimatedMinutes: number;
   deliveryFee: number;

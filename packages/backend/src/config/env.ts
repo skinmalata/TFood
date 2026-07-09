@@ -27,6 +27,9 @@ export const config = {
   TWILIO_ACCOUNT_SID: process.env.TWILIO_ACCOUNT_SID || '',
   TWILIO_AUTH_TOKEN: process.env.TWILIO_AUTH_TOKEN || '',
   TWILIO_PHONE_NUMBER: process.env.TWILIO_PHONE_NUMBER || '',
+  TWILIO_API_KEY_SID: process.env.TWILIO_API_KEY_SID || '',
+  TWILIO_API_KEY_SECRET: process.env.TWILIO_API_KEY_SECRET || '',
+  TWILIO_TWIML_APP_SID: process.env.TWILIO_TWIML_APP_SID || '',
 
   GOOGLE_MAPS_API_KEY: process.env.GOOGLE_MAPS_API_KEY || '',
 
